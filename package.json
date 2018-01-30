@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API NodeJS para aprendizado",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "api",
+    "nodejs"
+  ],
+  "author": "locemarn - Marcelo Nogueira da Silva - github.com/locemarn",
+  "license": "MIT"
+}
