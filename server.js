@@ -3,8 +3,7 @@ const debug   = require('debug')('nodestr:server')
 const express = require('express')
 
 const app = express()
-// porta será mudada. Não será fixa, irá procurar um porta vazia
-const port = 3000
+const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
 
 const server = http.createServer(app)
@@ -21,3 +20,17 @@ app.use('/', route)
 
 server.listen(port)
 console.log('Server ON: ' + port)
+
+function normalizePort(val) {
+  const port = parseInt(val, 10)
+
+  if (isNaN(port)) {
+    return val
+  }
+
+  if (port >= 0) {
+    return port
+  }
+
+  return false
+}
