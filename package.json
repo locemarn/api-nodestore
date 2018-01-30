@@ -2,9 +2,9 @@
   "name": "api",
   "version": "1.0.0",
   "description": "API NodeJS para aprendizado",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/server.js"
   },
   "keywords": [
     "API",
@@ -17,5 +17,8 @@
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "http": "0.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
   }
 }
