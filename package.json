@@ -12,5 +12,10 @@
     "nodejs"
   ],
   "author": "locemarn - Marcelo Nogueira da Silva - github.com/locemarn",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "http": "0.0.0"
+  }
 }
