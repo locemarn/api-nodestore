@@ -6,6 +6,7 @@ const app    = express()
 const router = express.Router()
 
 // conecta ao banco
+// mudar username e password
 mongoose.connect('mongodb://locemarn:locemarn@ds046867.mlab.com:46867/nodestore')
 
 // carrega os Models

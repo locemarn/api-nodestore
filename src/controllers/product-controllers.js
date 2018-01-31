@@ -1,6 +1,16 @@
 const mongoose = require('mongoose')
 const Product = mongoose.model('Product')
 
+exports.get = (req, res, next) => {
+  Product.find({ 
+    active: true              // traz apenas os produtos que estão como active true do bd
+  }, 'title price slug')      // Informaçῶoes que vão aparecer dos produtos
+  .then(data => {
+    res.status(200).send(data)
+  }).catch(e => {
+    res.status(400).send(e)
+  })
+}
 
 exports.post = (req, res, next) => {
   let product = new Product()
@@ -19,10 +29,7 @@ exports.post = (req, res, next) => {
     }).catch(e => {
       res.status(400).send({ error: 'Falha ao cadastrar produto!', 
       data: e })
-    })
-
-  
-  
+    }) 
 }
 
 exports.put = (req, res, next) => {
