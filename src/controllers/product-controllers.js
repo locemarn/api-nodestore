@@ -13,10 +13,21 @@ exports.get = (req, res, next) => {
 }
 
 exports.getBySlug = (req, res, next) => {
-  Product.findOne({
+  Product
+  .findOne({
     slug: req.params.slug,
     active: true              // traz apenas os produtos que estão como active true do bd
   }, 'title description price slug tags')      // Informaçῶoes que vão aparecer dos produtos
+  .then(data => {
+    res.status(200).send(data)
+  }).catch(e => {
+    res.status(400).send(e)
+  })
+}
+
+exports.getById = (req, res, next) => {
+  Product
+  .findById(req.params.id)
   .then(data => {
     res.status(200).send(data)
   }).catch(e => {
