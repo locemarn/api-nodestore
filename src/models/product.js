@@ -4,32 +4,32 @@ const Schema   = mongoose.Schema
 const schema   = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, 'campo obrigatório'],
     trim: true
   },
   slug: {
     type: String,
-    required: true,
+    required: [true, 'campo obrigatório'],
     trim: true,
     index: true,
     unique: true
   },
   description: {
     type: String,
-    required: true
+    required: [true, 'campo obrigatório']
   },
-  pride: {
+  price: {
     type: Number,
-    required: true
+    required: [true, 'campo obrigatório']
   },
   active: {
     type: Boolean,
-    required: true,
+    required: [true, 'campo obrigatório'],
     default: true
   },
   tags: [{
     type: String,
-    required: true
+    required: [true, 'campo obrigatório']
   }]
 })
 
