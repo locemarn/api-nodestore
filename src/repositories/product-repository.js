@@ -1,49 +1,44 @@
 const mongoose = require('mongoose')
 const Product  = mongoose.model('Product')
 
-exports.get = () => {
-  return Product.find({ 
+exports.get = async() => {
+  return res = await Product.find({ 
     active: true              // traz apenas os produtos que estão como active true do bd
   }, 'title price slug')      // Informações que vão aparecer dos produtos
+  return res
 }
 
-exports.getBySlug = (slug) => {
-  return Product
+exports.getBySlug = async(slug) => {
+  const res = await Product
   .findOne({
     slug: slug,
     active: true              // traz apenas os produtos que estão como active true do bd
   }, 'title description price slug tags')      // Informaçῶoes que vão aparecer dos produtos
+  return res
 }
 
-exports.getById = (id) => {
-  return Product
+exports.getById = async(id) => {
+  const res = await Product
     .findById(id)
+    return res
 }
 
-exports.getByTag = (tag) => {
-  return Product
+exports.getByTag = async(tag) => {
+  const res = await Product
   .find({
     tags: tag,
     active: true              // traz apenas os produtos que estão como active true do bd
   }, 'title description price slug tags')      // Informaçῶoes que vão aparecer dos produtos
+  return res
 }
 
-// exports.create = (data) => {
-//   let product = new Product()
-  
-//   product.title       = req.body.title
-//   product.slug        = req.body.slug
-//   product.description = req.body.description
-//   product.price       = req.body.price
-//   product.activate    = req.body.activate
-//   product.tags        = req.body.tags
+exports.create = async(data) => {
+  let product = new Product(data)
+  await product.save()
+}
 
-//   product
-//     .save()
-// }
-
-exports.update = (id, data) => {
-  return Product
+exports.update = async(id, data) => {
+  await Product
   .findByIdAndUpdate(id, {
     $set: {
       title: data.title,
@@ -54,7 +49,7 @@ exports.update = (id, data) => {
   })
 }
 
-exports.delete = (id) => {
-  return Product
+exports.delete = async(id) => {
+  await Product
   .findOneAndRemove(id)
 }
