@@ -52,14 +52,15 @@ exports.getByTag = (req, res, next) => {
 exports.post = (req, res, next) => {
   let contract = new ValidationContract()
   contract.hasMinLen(req.body.title, 3, 'O título deve conter ao menos 3 carts.')
+  contract.hasMinLen(req.body.slug, 3, 'O slug deve conter ao menos 3 carts.')
+  contract.hasMinLen(req.body.description, 10, 'A descrição deve conter ao menos 10 carts.')
+  contract.hasMinLen(req.body.price, 1, 'Campo obrigatório!')
 
   // se os dados forem inválidos
   if (!contract.isValid()) {
     res.status(400).send(contract.errors()).end()
     return
   }
-
-
 
   let product = new Product()
   
