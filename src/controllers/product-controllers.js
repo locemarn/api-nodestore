@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 const Product = mongoose.model('Product')
+const ValidationContract = require('../validators/fluent-validator')
 
 exports.get = (req, res, next) => {
   Product.find({ 
     active: true              // traz apenas os produtos que estão como active true do bd
-  }, 'title price slug')      // Informaçῶoes que vão aparecer dos produtos
+  }, 'title price slug')      // Informações que vão aparecer dos produtos
   .then(data => {
     res.status(200).send(data)
   }).catch(e => {
@@ -49,6 +50,17 @@ exports.getByTag = (req, res, next) => {
 }
 
 exports.post = (req, res, next) => {
+  let contract = new ValidationContract()
+  contract.hasMinLen(req.body.title, 3, 'O título deve conter ao menos 3 carts.')
+
+  // se os dados forem inválidos
+  if (!contract.isValid()) {
+    res.status(400).send(contract.errors()).end()
+    return
+  }
+
+
+
   let product = new Product()
   
   product.title       = req.body.title
