@@ -12,6 +12,7 @@ mongoose.connect('mongodb://locemarn:locemarn@ds046867.mlab.com:46867/nodestore'
 // carrega os Models
 const Product = require('./models/product')
 const Customer = require('./models/customer')
+const Order = require('./models/order')
 
 // carrega as rotas
 const indexRoute    = require('./routes/index-route')
